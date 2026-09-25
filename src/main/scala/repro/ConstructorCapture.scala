@@ -3,9 +3,7 @@ package repro
 import scala.scalajs.js.annotation.JSExportTopLevel
 
 object ActionSource {
-  object Entity {
-    def apply(id: Int, path: String): Int = id
-  }
+  def compute(id: Int): Int = id
 }
 
 class TestAction(uiPosition: Int = 0, actionSource: Option[Int]) {
@@ -17,7 +15,7 @@ def main(): Unit = new Reproducer()
 
 class Reproducer {
   new TestAction(
-    actionSource = Some(1).map(ActionSource.Entity(_, ""))
+    actionSource = Some(1).map(ActionSource.compute)
   ) {
     override def priority: Int = 10
   }
