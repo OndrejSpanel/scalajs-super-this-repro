@@ -8,23 +8,17 @@ object ActionSource {
   }
 }
 
-class TestAction(uiPosition: Int = 0, actionSource: Option[Int] = None) {
+class TestAction(uiPosition: Int = 0, actionSource: Option[Int]) {
   def priority: Int = 0
 }
 
+@JSExportTopLevel("main")
+def main(): Unit = new Reproducer()
+
 class Reproducer {
-  def selectionAction(
-    actionPriority: Int,
-    sourceId: Option[Int]
-  ): TestAction = {
-    val path = ""
-    new TestAction(
-      actionSource = sourceId.map(ActionSource.Entity(_, path))
-    ) {
-      override def priority: Int = actionPriority
-    }
+  new TestAction(
+    actionSource = Some(1).map(ActionSource.Entity(_, ""))
+  ) {
+    override def priority: Int = 10
   }
 }
-
-@JSExportTopLevel("main")
-def main(): Unit = new Reproducer().selectionAction(10, Some(1))

@@ -6,4 +6,4 @@ With Scala 3.9.0, sbt 2.0.9, and sbt-scalajs 1.22.0, run:
 sbt fullLinkJS
 ```
 
-Compilation succeeds. Full linking fails with `Restricted use of this before the super constructor call` at the `sourceId.map(ActionSource.Entity(_, path))` argument in `ConstructorCapture.scala`.
+Compilation succeeds. Full linking fails with `Restricted use of this before the super constructor call` at `Some(1).map(ActionSource.Entity(_, ""))` in `ConstructorCapture.scala`.
